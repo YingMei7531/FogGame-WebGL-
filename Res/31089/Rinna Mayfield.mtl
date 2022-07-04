@@ -1,0 +1,96 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# 创建的文件:31.07.2019 19:22:50
+
+newmtl Material__52
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\e2ad5bea4c4c409dac53e36ed0899784.jpeg
+	map_Kd Textures\e2ad5bea4c4c409dac53e36ed0899784.jpeg
+
+newmtl Material__53
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\e463da7e05434a6c8c6f0ba56595d64b.jpeg
+	map_Kd Textures\e463da7e05434a6c8c6f0ba56595d64b.jpeg
+
+newmtl 003_0_3
+	Ns 63.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.5647 0.2761 0.7310
+	Ks 0.2500 0.2500 0.2500
+	Ke 0.0000 0.0000 0.0000
+
+newmtl 003_1_3
+	Ns 63.2193
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.3200 0.2823 0.6588
+	Ks 0.2500 0.2500 0.2500
+	Ke 0.0000 0.0000 0.0000
+
+newmtl Material__50
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\4396c730e7604ea490e9830cc56d0f0d.jpeg
+	map_Kd Textures\4396c730e7604ea490e9830cc56d0f0d.jpeg
+
+newmtl Material__49
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\5b9da98a84c74cd9a8aa110e35148ff1.jpeg
+	map_Kd Textures\5b9da98a84c74cd9a8aa110e35148ff1.jpeg
+
+newmtl Material__51
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Textures\432184808d524df7806fb70488330b89.jpeg
+	map_Kd Textures\432184808d524df7806fb70488330b89.jpeg
