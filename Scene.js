@@ -1305,8 +1305,8 @@ function animation(){
 	}
 
 	if(isGameRun){
-		//time -= elapsed;
-		//NUM += elapsed*2;
+		time -= elapsed;
+		NUM += elapsed*2;
 	}
 }
 
