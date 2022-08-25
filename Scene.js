@@ -61,7 +61,7 @@ var showMap=true;	//小地图
 
 var NUM=0;			//雾化值
 var SUM=3;
-var time=100;
+var time=500;
 var Menu=true;		//提示
 
 //输入密码相关
@@ -758,17 +758,41 @@ function getLocation(){
 
 var ground = buildGround(20.0, 0.1);	//生成地面对象
 
-var numSpheres = 0;  //场景中球的数目
-var posSphere = [];  //球的坐标
+var posSphere = [
+	vec2(-3.0,3.0), 
+	vec2(0.0,3.0), 
+	vec2(-2.0,12.0), 
+	vec2(-4.0,12.0), 
+	vec2(2.0,12.0), 
+	vec2(4.0,11.0), 
+	vec2(6.0,15.0), 
+	vec2(8.0,11.0), 
+	vec2(12.0,0.0), 
+	vec2(10.0,-1.0), 
+	vec2(9.0,-5.0), 
+	vec2(-7.0,-8.0), 
+	vec2(-11.0,2.0), 
+	vec2(-7.0,3.0), 
+	vec2(13.0,-13.0), 
+	vec2(0.0,-15.0), 
+	vec2(-13.0,-6.0), 
+	vec2(-13.0,-3.0), 
+	vec2(-16.0,-1.0), 
+	vec2(18.0,-14.0), 
+	vec2(-14.0,18.0), 
+	vec2(17.0,17.0), 
+];  //球的坐标
+var numSpheres = posSphere.length;  //场景中球的数目
 var sphere = buildSphere(0.2, 15, 15);	//生成球对象
 
-var numTours=4;		//场景中圆环的数目
+var numTours = 4;		//场景中圆环的数目
 var posTours = [
 	vec2(0, -3),
 	vec2(-11, 12),
 	vec2(-17, 1),
 	vec2(0, 12)
 ];  //圆环的坐标
+var isDrawToursPos = [false,false,false,false];
 var torus = buildTorus(0.35, 0.15, 40, 20);	//生成圆环对象
 
 var cube = buildCubes(1);	//生成方块对象
@@ -867,6 +891,7 @@ var posBuildWall = [
 ];
 var posWall = [];
 var wallFlag = [];
+var isDrawWallPos = [];
 
 var npcPos;		//NPC坐标
 
@@ -902,11 +927,11 @@ function initObjs(){
 	ground.texObj = loadTexture("Res\\ground.jpeg",gl.RGB,true);
 	
 	// 随机放置球的位置
-	for(var iSphere = 0; iSphere < numSpheres; iSphere++){
+	/*for(var iSphere = 0; iSphere < numSpheres; iSphere++){
 		var x = Math.random() * sizeGround * 2 - sizeGround;
 		var z = Math.random() * sizeGround * 2 - sizeGround;
 		posSphere.push(vec2(x, z));
-	}
+	}*/
 	
 	// 初始化球顶点数据缓冲区对象(VBO)
 	sphere.initBuffers();
@@ -945,6 +970,7 @@ function initObjs(){
 	buildWall();
 	for(var i=0;i<posWall.length;i++){
 		wallFlag.push(true);
+		isDrawWallPos.push(false);
 	}
 }
 
@@ -1406,8 +1432,8 @@ function animation(){
 	}
 
 	if(isGameRun){
-		//time -= elapsed;
-		//NUM += elapsed*2;
+		time -= elapsed;
+		NUM += elapsed*0.5;
 	}
 }
 
@@ -1485,6 +1511,9 @@ function collide(){
 		if (Math.abs(posTours[i][0] - x) <= 0.6 && Math.abs(posTours[i][1] - z) <= 0.6) {
 			showText[i] = true;
 		}
+		if (Math.abs(posTours[i][0] - x) <= 2.5 && Math.abs(posTours[i][1] - z) <= 2.5) {
+			isDrawToursPos[i] = true;
+		}
 	}
 	
 	//与树的碰撞检测
@@ -1503,9 +1532,13 @@ function collide(){
 		isCollision = true;
 	}
 
+	//与墙的碰撞检测
 	for(var i=0;i<posWall.length;i++){
 		if (Math.abs(posWall[i][0] - x) <= 0.55 && Math.abs(posWall[i][1] - z) <= 0.55) 
 			isCollision = true;
+		if (!isDrawWallPos[i] && Math.abs(posWall[i][0] - x) <= 2.5 && Math.abs(posWall[i][1] - z) <= 2.5){ 
+			isDrawWallPos[i] = true;
+		}
 	}
 
 	//发生碰撞，摄像机归位
@@ -1583,19 +1616,30 @@ function draw2D(){
 		
 		//墙
 		for(var i = 0;i<posWall.length;i++){
-			ctx.fillStyle = 'rgba(255, 255, 0, 1.0)';
-			var pX = 105 + (posWall[i][0] * 10) / 2;
-			var pY = 105 + (posWall[i][1] * 10) / 2;
-			ctx.fillRect(pX, pY, 6, 6);
+			if(isDrawWallPos[i]){
+				ctx.fillStyle = 'rgba(255, 255, 0, 1.0)';
+				var pX = 105 + (posWall[i][0] * 10) / 2;
+				var pY = 105 + (posWall[i][1] * 10) / 2;
+				ctx.fillRect(pX, pY, 6, 6);
+			}
 		}
 
 		//圆环
 		for(var i = 1;i<numTours;i++){
+			if(!isDrawToursPos[i]) continue;
 			ctx.fillStyle = 'rgba(255, 0, 0, 1.0)';
 			var pX = 105 + (posTours[i][0] * 10) / 2;
 			var pY = 105 + (posTours[i][1] * 10) / 2;
 			ctx.fillRect(pX, pY, 6, 6);
 		}
+
+		//小球
+		/*for(var i = 0;i<numSpheres;i++){
+			ctx.fillStyle = 'rgba(255, 0, 0, 1.0)';
+			var pX = 105 + (posSphere[i][0] * 10) / 2;
+			var pY = 105 + (posSphere[i][1] * 10) / 2;
+			ctx.fillRect(pX, pY, 6, 6);
+		}*/
 
 		//玩家的坐标
 		matReverse = mult(matReverse, translate(0.0, 0.0, -cameraDis));
